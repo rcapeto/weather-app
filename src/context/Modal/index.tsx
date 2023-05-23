@@ -3,6 +3,7 @@
 import { PropsWithChildren, createContext, useRef } from 'react'
 
 import Modal, { ModalActions, ModalParams } from '@/components/Modal'
+
 import { ModalContextValues } from './types'
 
 export const ModalContext = createContext({} as ModalContextValues)

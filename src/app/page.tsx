@@ -1,11 +1,15 @@
-import { Header } from '@/components/Header'
-import { PageContent } from '@/components/PageContent'
 import ModalContextProvider from '@/context/Modal'
 import TabContextProvider from '@/context/TabContext'
 
+import { Header } from '@/components/Header'
+import { PageContent } from '@/components/PageContent'
+import { Compose } from '@/components/Compose'
+
+const contexts = [ModalContextProvider, TabContextProvider]
+
 export default function Home() {
   return (
-    <ModalContextProvider>
+    <Compose contexts={contexts}>
       <main className="weather-app-content">
         <Header />
 
@@ -15,6 +19,6 @@ export default function Home() {
           </TabContextProvider>
         </section>
       </main>
-    </ModalContextProvider>
+    </Compose>
   )
 }

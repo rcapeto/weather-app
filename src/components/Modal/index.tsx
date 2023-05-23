@@ -7,8 +7,10 @@ import {
   useMemo,
   useState,
 } from 'react'
-import styles from './styles.module.css'
+
 import { Button } from '@/components/Button'
+
+import styles from './styles.module.css'
 
 interface ShowModalParams {
   title: string

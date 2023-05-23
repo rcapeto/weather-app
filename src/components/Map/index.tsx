@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Coordinates, ErrorState } from '@/hooks/useCurrentLocation/types'
 import { useCurrentLocation } from '@/hooks/useCurrentLocation'
 import { useModal } from '@/hooks/useModal'
+
 import ConditionRender from '@/components/RenderValidation'
 import { Loader } from './Loader'
 import { Error } from './ErrorPage'

@@ -1,7 +1,8 @@
 import { Frown } from 'lucide-react'
 
-import { colors } from '@/config/colors'
 import { ErrorPage } from '@/components/ErrorPage'
+
+import { colors } from '@/config/colors'
 
 export function Error() {
   return (

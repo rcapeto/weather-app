@@ -4,14 +4,15 @@ import { useMemo, useState } from 'react'
 import { useCurrentLocation } from '@/hooks/useCurrentLocation'
 import { useApi } from '@/hooks/useApi'
 import { useApiEndpoint } from '@/hooks/useApiEndpoint'
-import { APICurrentWeatherData } from '@/interfaces/api'
-import ConditionRender from '@/components/RenderValidation'
+import { Coordinates, ErrorState } from '@/hooks/useCurrentLocation/types'
+import { useModal } from '@/hooks/useModal'
 
+import ConditionRender from '@/components/RenderValidation'
 import { Loader } from './Loader'
 import { Content } from './Content'
 import { Error } from './ErrorPage'
-import { Coordinates, ErrorState } from '@/hooks/useCurrentLocation/types'
-import { useModal } from '@/hooks/useModal'
+
+import { APICurrentWeatherData } from '@/interfaces/api'
 
 export function CurrentWeather() {
   const [loadingCoords, setLoadingCoords] = useState(true)

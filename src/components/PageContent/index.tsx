@@ -4,6 +4,7 @@ import { Fragment, FunctionComponent, useMemo } from 'react'
 
 import { Tabs as TabsEnum } from '@/context/TabContext/types'
 import { useTabs } from '@/hooks/useTabs'
+
 import { CurrentWeather } from '@/components/CurrentWeather'
 import { Map } from '@/components/Map'
 import { Tabs } from '@/components/Tabs'

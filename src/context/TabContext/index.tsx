@@ -1,13 +1,15 @@
 'use client'
 
 import { PropsWithChildren, createContext, useState } from 'react'
-import { TabContextValues, Tabs } from './types'
+
 import { ButtonProps } from '@/components/Button'
+
+import { TabContextValues, Tabs } from './types'
 
 export const TabContext = createContext({} as TabContextValues)
 
 export default function TabContextProvider({ children }: PropsWithChildren) {
-  const [activeTab, setActiveTab] = useState<Tabs>(Tabs.MAP)
+  const [activeTab, setActiveTab] = useState<Tabs>(Tabs.LOCATION)
 
   function handleChangeTab(tab: Tabs) {
     return function () {

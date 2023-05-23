@@ -10,11 +10,13 @@ import {
 } from 'lucide-react'
 
 import { SectionTitle } from '@/components/SectionTitle'
-import styles from './styles.module.css'
-import { colors } from '@/config/colors'
 import { Mapper } from '@/components/Mapper'
+
+import { colors } from '@/config/colors'
 import { format } from '@/utils/format'
 import { getImage } from '@/utils/getImage'
+
+import styles from './styles.module.css'
 
 interface ContentProps {
   cityName?: string

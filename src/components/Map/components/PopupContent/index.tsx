@@ -6,17 +6,20 @@ import {
   Sunrise,
   Sunset,
 } from 'lucide-react'
+
 import { Coordinates } from '@/hooks/useCurrentLocation/types'
-import styles from './styles.module.css'
 import { useApiEndpoint } from '@/hooks/useApiEndpoint'
 import { useApi } from '@/hooks/useApi'
-import { APICurrentWeatherData } from '@/interfaces/api'
-import { format } from '@/utils/format'
-import { getImage } from '@/utils/getImage'
-import { colors } from '@/config/colors'
 import { Mapper } from '@/components/Mapper'
 import { Loading } from '@/components/Loading'
 import ConditionRender from '@/components/RenderValidation'
+
+import { getImage } from '@/utils/getImage'
+import { format } from '@/utils/format'
+import { colors } from '@/config/colors'
+import { APICurrentWeatherData } from '@/interfaces/api'
+
+import styles from './styles.module.css'
 
 interface PopupContentProps {
   position: Coordinates

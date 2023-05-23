@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { Roboto } from 'next/font/google'
+
 import 'react-loading-skeleton/dist/skeleton.css'
 import './globals.css'
 import 'leaflet/dist/leaflet.css'

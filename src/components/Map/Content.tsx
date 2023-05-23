@@ -12,14 +12,17 @@ import { Search } from 'lucide-react'
 import Leaflet from 'leaflet'
 
 import { Coordinates } from '@/hooks/useCurrentLocation/types'
-import { Button } from '@/components/Button'
-import { Error } from './ErrorPage'
-import styles from './styles.module.css'
-import { colors } from '@/config/colors'
-import { PopupContent } from './components/PopupContent'
 import { useApiEndpoint } from '@/hooks/useApiEndpoint'
 import { useModal } from '@/hooks/useModal'
+
+import { PopupContent } from './components/PopupContent'
+import { Button } from '@/components/Button'
+
 import { APICurrentWeatherData } from '@/interfaces/api'
+import { colors } from '@/config/colors'
+import { Error } from './ErrorPage'
+
+import styles from './styles.module.css'
 
 interface ContentProps {
   coords?: Coordinates
