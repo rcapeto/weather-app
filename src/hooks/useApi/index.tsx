@@ -3,16 +3,17 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 
 export function useApi<Data>(endpoint: string, config?: RequestInit) {
   const [data, setData] = useState<Data>()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
 
   const fetchData = useCallback(async () => {
     if (!endpoint) {
       return
     }
-    setIsLoading(true)
 
     try {
+      setIsLoading(true)
+
       const response = await fetch(endpoint, config)
       const json: Data = await response.json()
 

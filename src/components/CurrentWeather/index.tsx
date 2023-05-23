@@ -18,7 +18,7 @@ export function CurrentWeather() {
   const [errorCoords, setErrorCoords] = useState(false)
   const [coords, setCoords] = useState<Coordinates>()
 
-  const { showModal } = useModal()
+  const { showModal, closeModal } = useModal()
 
   useCurrentLocation({
     onError: onErrorGetCoordinate,
@@ -37,6 +37,16 @@ export function CurrentWeather() {
 
   function onErrorGetCoordinate(errorState: ErrorState) {
     setErrorCoords(true)
+    setLoadingCoords(false)
+
+    showModal({
+      description: errorState.hasDenied
+        ? 'Você precisa aceitar o acesso a sua localização'
+        : 'Ocorreu um erro, por favor tente novamente! ',
+      title: 'Erro em obter localização',
+      onPress: closeModal,
+      buttonText: 'Ok',
+    })
   }
 
   function onSuccessGetCoordinate(coordinates: Coordinates) {
