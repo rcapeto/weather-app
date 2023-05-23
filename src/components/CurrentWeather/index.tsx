@@ -1,11 +1,9 @@
 'use client'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 import { useCurrentLocation } from '@/hooks/useCurrentLocation'
 import { useApi } from '@/hooks/useApi'
 import { useApiEndpoint } from '@/hooks/useApiEndpoint'
-import { Coordinates, ErrorState } from '@/hooks/useCurrentLocation/types'
-import { useModal } from '@/hooks/useModal'
 
 import ConditionRender from '@/components/RenderValidation'
 import { Loader } from './Loader'
@@ -15,16 +13,7 @@ import { Error } from './ErrorPage'
 import { APICurrentWeatherData } from '@/interfaces/api'
 
 export function CurrentWeather() {
-  const [loadingCoords, setLoadingCoords] = useState(true)
-  const [errorCoords, setErrorCoords] = useState(false)
-  const [coords, setCoords] = useState<Coordinates>()
-
-  const { showModal, closeModal } = useModal()
-
-  useCurrentLocation({
-    onError: onErrorGetCoordinate,
-    onSuccess: onSuccessGetCoordinate,
-  })
+  const { coords, loadingCoords, errorCoords } = useCurrentLocation()
 
   const { getApiCurrentWeatherEndpoint } = useApiEndpoint()
 
@@ -36,25 +25,6 @@ export function CurrentWeather() {
     return getApiCurrentWeatherEndpoint(coords)
   }, [coords, getApiCurrentWeatherEndpoint])
 
-  function onErrorGetCoordinate(errorState: ErrorState) {
-    setErrorCoords(true)
-    setLoadingCoords(false)
-
-    showModal({
-      description: errorState.hasDenied
-        ? 'Você precisa aceitar o acesso a sua localização'
-        : 'Ocorreu um erro, por favor tente novamente! ',
-      title: 'Erro em obter localização',
-      onPress: closeModal,
-      buttonText: 'Ok',
-    })
-  }
-
-  function onSuccessGetCoordinate(coordinates: Coordinates) {
-    setCoords(coordinates)
-    setLoadingCoords(false)
-  }
-
   const { isLoading, data, isError } = useApi<APICurrentWeatherData>(endpoint)
 
   return (
@@ -63,7 +33,7 @@ export function CurrentWeather() {
       validComponent={<Loader />}
       unvalidComponent={
         <ConditionRender
-          validation={isError || !data || errorCoords || !data.main}
+          validation={isError || !data || !!errorCoords || !data.main}
           unvalidComponent={
             <Content
               cityName={data?.name}

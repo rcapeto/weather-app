@@ -1,11 +1,17 @@
+'use client'
 import ModalContextProvider from '@/context/Modal'
 import TabContextProvider from '@/context/TabContext'
+import LocationContextProvider from '@/context/Location'
 
 import { Header } from '@/components/Header'
 import { PageContent } from '@/components/PageContent'
 import { Compose } from '@/components/Compose'
 
-const contexts = [ModalContextProvider, TabContextProvider]
+const contexts = [
+  ModalContextProvider,
+  TabContextProvider,
+  LocationContextProvider,
+]
 
 export default function Home() {
   return (

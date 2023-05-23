@@ -51,14 +51,6 @@ export function Content(props: ContentProps) {
         />
       </div>
 
-      <div className={styles.weatherContent}>
-        <img
-          src={getImage('climate', props?.weatherIcon ?? '')}
-          alt={props?.weatherDescription ?? ''}
-        />
-        <p>{props?.weatherDescription}</p>
-      </div>
-
       <div className={styles.tempContainer}>
         <Mapper
           items={[
@@ -76,38 +68,48 @@ export function Content(props: ContentProps) {
         />
       </div>
 
-      <div className={styles.informations}>
-        <Mapper
-          items={[
-            {
-              Icon: Thermometer,
-              value: format('temperature', props?.feelsLike ?? 0),
-            },
-            {
-              Icon: Wind,
-              value: format('speed', props?.windSpeed ?? 0),
-            },
-            {
-              Icon: Droplets,
-              value: format('humidity', props?.umidity ?? 0),
-            },
-            {
-              Icon: Sunrise,
-              value: format('timezone', props?.sunrise ?? 0),
-            },
-            {
-              Icon: Sunset,
-              value: format('timezone', props?.sunset ?? 0),
-            },
-          ]}
-          keyExtractor={(item) => `${item.value}`}
-          renderItem={({ item: { Icon, value } }) => (
-            <div className={styles.information}>
-              <Icon color={colors.gray[100]} size={15} />
-              <p>{value}</p>
-            </div>
-          )}
-        />
+      <div className={styles.informationsContainer}>
+        <div className={styles.weatherContent}>
+          <img
+            src={getImage('climate', props?.weatherIcon ?? '')}
+            alt={props?.weatherDescription ?? ''}
+          />
+          <p>{props?.weatherDescription}</p>
+        </div>
+
+        <div className={styles.informations}>
+          <Mapper
+            items={[
+              {
+                Icon: Thermometer,
+                value: format('temperature', props?.feelsLike ?? 0),
+              },
+              {
+                Icon: Wind,
+                value: format('speed', props?.windSpeed ?? 0),
+              },
+              {
+                Icon: Droplets,
+                value: format('humidity', props?.umidity ?? 0),
+              },
+              {
+                Icon: Sunrise,
+                value: format('timezone', props?.sunrise ?? 0),
+              },
+              {
+                Icon: Sunset,
+                value: format('timezone', props?.sunset ?? 0),
+              },
+            ]}
+            keyExtractor={(item) => `${item.value}`}
+            renderItem={({ item: { Icon, value } }) => (
+              <div className={styles.information}>
+                <Icon color={colors.gray[100]} size={15} />
+                <p>{value}</p>
+              </div>
+            )}
+          />
+        </div>
       </div>
     </div>
   )
