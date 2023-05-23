@@ -1,6 +1,7 @@
-import { CurrentWeather } from '@/components/CurrentWeather'
 import { Header } from '@/components/Header'
+import { PageContent } from '@/components/PageContent'
 import ModalContextProvider from '@/context/Modal'
+import TabContextProvider from '@/context/TabContext'
 
 export default function Home() {
   return (
@@ -9,7 +10,9 @@ export default function Home() {
         <Header />
 
         <section className="weather-app-scroll">
-          <CurrentWeather />
+          <TabContextProvider>
+            <PageContent />
+          </TabContextProvider>
         </section>
       </main>
     </ModalContextProvider>

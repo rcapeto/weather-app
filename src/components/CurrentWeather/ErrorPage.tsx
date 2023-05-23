@@ -1,9 +1,16 @@
-import styles from './styles.module.css'
+import { Frown } from 'lucide-react'
 
-export function ErrorPage() {
+import { colors } from '@/config/colors'
+import { ErrorPage } from '@/components/ErrorPage'
+
+export function Error() {
   return (
-    <div className={styles.errorContainer}>
-      <p>Ops! Ocorreu um erro</p>
-    </div>
+    <ErrorPage
+      title="Oh! Ocorreu um erro"
+      errorMessage="Verifique se seu navegador tem permissão para obter sua localização ou tente novamente mais tarde"
+      buttonText="Recarregar página"
+      onPressBtn={() => window.location.reload()}
+      icon={<Frown color={colors.purple[600]} size={150} />}
+    />
   )
 }

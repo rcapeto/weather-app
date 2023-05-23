@@ -73,24 +73,6 @@
    padding: 10px 24px;
 }
 
-.modal-content-button {
-   background-color: var(--color-purple-600);
-   width: 100%;
-   border: 0;
-   border-radius: 4px;
-   padding: 10px 16px;
-   cursor: pointer;
-   color: var(--color-white);
-   font-weight: 900;
-   font-size: 12px;
-   text-transform: uppercase;
-   transition: background-color ease .4s;
-}
-
-.modal-content-button:hover {
-   background-color: var(--color-purple-700);
-}
-
 @media (max-width: 420px) {
    .modal-content {
       border-radius: 0px;

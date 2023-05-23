@@ -28,21 +28,21 @@ interface ContentProps {
   umidity?: number
 }
 
+function getTemp(temp?: number) {
+  const tempFormatted = Math.round(temp ?? 0)
+  return `${tempFormatted}ºC`
+}
+
+function getDate(timezone: number) {
+  const date = new Date(timezone * 1000)
+  const hours = date.getHours().toString()
+  const minutes = date.getMinutes().toString()
+
+  return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`
+}
+
 export function Content(props: ContentProps) {
   const { getCountryFlag, getImageEndpoint } = useApiEndpoint()
-
-  function getTemp(temp?: number) {
-    const tempFormatted = Math.round(temp ?? 0)
-    return `${tempFormatted}ºC`
-  }
-
-  function getDate(timezone: number) {
-    const date = new Date(timezone * 1000)
-    const hours = date.getHours().toString()
-    const minutes = date.getMinutes().toString()
-
-    return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`
-  }
 
   return (
     <div className={styles.container}>

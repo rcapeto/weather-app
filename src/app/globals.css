@@ -60,6 +60,8 @@ body {
   flex: 1;
   padding: 20px 24px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .weather-app-scroll::-webkit-scrollbar {

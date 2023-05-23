@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react'
 import styles from './styles.module.css'
+import { Button } from '@/components/Button'
 
 interface ShowModalParams {
   title: string
@@ -68,12 +69,7 @@ const Modal: ForwardRefRenderFunction<ModalActions> = (_, ref) => {
 
         {state?.buttonText && (
           <footer>
-            <button
-              className={styles['modal-content-button']}
-              onClick={state?.onPress}
-            >
-              {state.buttonText}
-            </button>
+            <Button text={state.buttonText} onPress={state?.onPress} />
           </footer>
         )}
       </main>

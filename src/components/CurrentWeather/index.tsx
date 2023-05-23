@@ -9,7 +9,7 @@ import ConditionRender from '@/components/RenderValidation'
 
 import { Loader } from './Loader'
 import { Content } from './Content'
-import { ErrorPage } from './ErrorPage'
+import { Error } from './ErrorPage'
 import { Coordinates, ErrorState } from '@/hooks/useCurrentLocation/types'
 import { useModal } from '@/hooks/useModal'
 
@@ -79,7 +79,7 @@ export function CurrentWeather() {
               umidity={data?.main?.humidity}
             />
           }
-          validComponent={<ErrorPage />}
+          validComponent={<Error />}
         />
       }
     />

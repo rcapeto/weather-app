@@ -1,0 +1,33 @@
+.button {
+   width: 100%;
+   border-radius: 4px;
+   padding: 10px 16px;
+   cursor: pointer;
+   font-weight: 900;
+   font-size: 12px;
+   text-transform: uppercase;
+   transition: all ease .4s;
+}
+
+.full {
+   background-color: var(--color-purple-600);
+   color: var(--color-white);
+   border: 0;
+}
+
+.full:hover {
+   background-color: var(--color-purple-700);
+}
+
+.border {
+   color: var(--color-purple-600);
+   background-color: transparent;
+   border: 1px solid var(--color-purple-600);
+   transition: all ease .4s;
+}
+
+.border:hover {
+   background-color: var(--color-purple-600);
+   border-color: var(--color-purple-600);
+   color: var(--color-white);
+}
