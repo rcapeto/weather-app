@@ -1,0 +1,21 @@
+.headerContainer {
+   padding: 24px;
+   border-bottom: 1px solid var(--color-gray-100);
+}
+
+.headerTitle {
+   font-size: 34px;
+   line-height: 44px;
+}
+
+.headerTitle > span {
+   color: var(--color-purple-400);
+   font-weight: 700;
+}
+
+.headerDescription {
+   font-size: 14px;
+   line-height: 20px;
+   display: block;
+   margin-top: 20px;
+}

@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Aplicação de Clima/Tempo
 
-First, run the development server:
+Dos requisitos obrigatórios:
+1. Ao acessar a aplicação, a mesma, deve usar a geolocalização do usuário e pegar as
+informações do clima.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+2. O usuário poderá digitar um endereço e ser capaz de coletar as informações do clima daquele
+endereço.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. As informações do clima do dia atual deverão ser exibidas em um mapa. Deverá haver um
+marcador na geolocalização do usuário ou endereço e um popup com as informações do
+clima.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. A exibição das previsões dos próximos dias deve ser exibida em uma seção diferente do mapa.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+5. A aplicação de ter design responsivo.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Observações:
+• Você poderá utilizar a seguinte stack: create-react-app, react, pre-processadores css, fetch /
+axios.
+• Você não deverá utilizar frameworks de components / UI (material design, bootstrap)
+• Você poderá utilizar uma API de clima de sua preferência.
+• Para pegar a geolocalização do endereço você pode usar a api do google.
+• O design da aplicação fica a seu critério.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Extras:
+1. Testes unitários / integração.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. Ao clicar em um ponto do mapa a aplicação deverá exibir as informações do clima para
+aquela geolocalização.

@@ -1,0 +1,40 @@
+.sectionContainer {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.sectionText {
+   font-size: 22px;
+   font-weight: 400;
+   line-height: 32px;
+   color: var(--color-gray-100);
+   position: relative;
+}
+
+.sectionText::before {
+   content: '';
+   width: 12px;
+   height: 2px;
+   position: absolute;
+   left: -24px;
+   bottom: 50%;
+   transform: translateY(50%);
+   background-color: var(--color-gray-300);
+}
+
+.sectionText::after {
+   content: '';
+   width: 100px;
+   height: 3px;
+   position: absolute;
+   bottom: -2px;
+   left: 0;
+   background-color: var(--color-purple-700);
+}
+
+.iconContainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}

@@ -1,0 +1,97 @@
+.sectionContainer {
+   padding: 20px 0;
+}
+
+.container {
+   display: flex;
+   flex-direction: column;
+}
+
+.locationContainer {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-top: 20px;
+}
+
+.locationContainer span {
+   font-size: 22px;
+   font-weight: 700;
+   line-height: 32px;
+   color: var(--color-gray-100);
+}
+
+.locationContainer img {
+   width: 30px;
+   height: 30px;
+}
+
+.tempContainer {
+   margin-top: 15px;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 10px;
+}
+
+.weatherContent {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-bottom: 20px;
+}
+
+.weatherContent img {
+  width: 100px;
+  object-fit: contain;
+  height: auto;
+}
+
+.weatherContent p {
+   font-size: 16px;
+   line-height: 26px;
+   font-weight: 400;
+   color: var(--color-gray-200);
+   text-transform: capitalize;
+}
+
+.temperature {
+   border: 1px solid var(--color-purple-500);
+   padding: 14px;
+   border-radius: 8px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   box-shadow: 7px 9px 1px #0003;
+}
+
+.temperature p { 
+   font-size: 20px;
+   font-weight: 700;
+   line-height: 28px;
+   color: var(--color-gray-50);
+}
+.temperature span { 
+   font-size: 14px;
+   font-weight: 400;
+   color: var(--color-gray-300);
+}
+
+.informations {
+   padding: 20px 0;
+   margin-top: 20px;
+}
+
+
+.information {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   justify-content: center;
+   margin-bottom: 10px;
+}
+
+.loaderContainer {
+   padding: 20px 0;
+}
+
+.errorContainer {}

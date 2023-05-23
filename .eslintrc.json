@@ -4,6 +4,8 @@
     "@rocketseat/eslint-config/react"
   ],
   "rules": {
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "no-undef": "off",
+    "@next/next/no-img-element": "off"
   }
 }
