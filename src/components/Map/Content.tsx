@@ -29,7 +29,9 @@ interface ContentProps {
 }
 
 export function Content(props: ContentProps) {
-  const [position, setPosition] = useState<Coordinates | null>(null)
+  const [position, setPosition] = useState<Coordinates | null>(
+    props.coords ?? null,
+  )
   const [loadingCityWeather, setLoadingCityWeather] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)

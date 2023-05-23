@@ -34,3 +34,10 @@
    border-color: var(--color-purple-600);
    color: var(--color-white);
 }
+
+@media (max-width: 768px) {
+   .button {
+      padding: 8px 10px;
+      cursor: pointer;
+   }
+}

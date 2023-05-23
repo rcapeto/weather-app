@@ -87,4 +87,7 @@ body {
     max-width: unset;
     border-radius: 0px;
   }
+  .weather-app-scroll {
+    padding: 10px;
+  }
 }

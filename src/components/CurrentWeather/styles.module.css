@@ -93,7 +93,7 @@
 @media (max-width: 767px) {
    .weatherContent {
       min-width: unset;
-      padding: 20px;
+      padding-top: 20px;
    }
    .informations {
       grid-template-columns: repeat(2, 1fr);

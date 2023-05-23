@@ -10,10 +10,6 @@ import { Content } from './Content'
 export function Map() {
   const { coords, errorCoords, loadingCoords } = useCurrentLocation()
 
-  if (!coords) {
-    return <Error />
-  }
-
   return (
     <ConditionRender
       validation={loadingCoords}
@@ -22,7 +18,7 @@ export function Map() {
         <ConditionRender
           validation={!!errorCoords}
           validComponent={<Error />}
-          unvalidComponent={<Content coords={coords} />}
+          unvalidComponent={<Content coords={coords!} />}
         />
       }
     />
