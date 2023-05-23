@@ -1,3 +1,5 @@
+'use client'
+
 import {
   MapPin,
   Droplets,
@@ -10,8 +12,9 @@ import {
 import { SectionTitle } from '@/components/SectionTitle'
 import styles from './styles.module.css'
 import { colors } from '@/config/colors'
-import { useApiEndpoint } from '@/hooks/useApiEndpoint'
 import { Mapper } from '@/components/Mapper'
+import { format } from '@/utils/format'
+import { getImage } from '@/utils/getImage'
 
 interface ContentProps {
   cityName?: string
@@ -28,22 +31,7 @@ interface ContentProps {
   umidity?: number
 }
 
-function getTemp(temp?: number) {
-  const tempFormatted = Math.round(temp ?? 0)
-  return `${tempFormatted}ºC`
-}
-
-function getDate(timezone: number) {
-  const date = new Date(timezone * 1000)
-  const hours = date.getHours().toString()
-  const minutes = date.getMinutes().toString()
-
-  return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`
-}
-
 export function Content(props: ContentProps) {
-  const { getCountryFlag, getImageEndpoint } = useApiEndpoint()
-
   return (
     <div className={styles.container}>
       <SectionTitle
@@ -56,14 +44,14 @@ export function Content(props: ContentProps) {
 
         <span>{props.cityName}</span>
         <img
-          src={getCountryFlag(props.country ?? '')}
+          src={getImage('country', props.country ?? '')}
           alt={props.cityName ?? ''}
         />
       </div>
 
       <div className={styles.weatherContent}>
         <img
-          src={getImageEndpoint(props?.weatherIcon ?? '')}
+          src={getImage('climate', props?.weatherIcon ?? '')}
           alt={props?.weatherDescription ?? ''}
         />
         <p>{props?.weatherDescription}</p>
@@ -72,9 +60,9 @@ export function Content(props: ContentProps) {
       <div className={styles.tempContainer}>
         <Mapper
           items={[
-            { text: 'Mín', value: getTemp(props.temp_min) },
-            { text: 'Atual', value: getTemp(props.temp) },
-            { text: 'Máx', value: getTemp(props.temp_max) },
+            { text: 'Mín', value: format('temperature', props.temp_min ?? 0) },
+            { text: 'Atual', value: format('temperature', props.temp ?? 0) },
+            { text: 'Máx', value: format('temperature', props.temp_max ?? 0) },
           ]}
           renderItem={({ item }) => (
             <div className={styles.temperature}>
@@ -91,23 +79,23 @@ export function Content(props: ContentProps) {
           items={[
             {
               Icon: Thermometer,
-              value: getTemp(props?.feelsLike ?? 0),
+              value: format('temperature', props?.feelsLike ?? 0),
             },
             {
               Icon: Wind,
-              value: `${props?.windSpeed}km/h`,
+              value: format('speed', props?.windSpeed ?? 0),
             },
             {
               Icon: Droplets,
-              value: `${props?.umidity}%`,
+              value: format('humidity', props?.umidity ?? 0),
             },
             {
               Icon: Sunrise,
-              value: getDate(props?.sunrise ?? 0),
+              value: format('timezone', props?.sunrise ?? 0),
             },
             {
               Icon: Sunset,
-              value: getDate(props?.sunset ?? 0),
+              value: format('timezone', props?.sunset ?? 0),
             },
           ]}
           keyExtractor={(item) => `${item.value}`}

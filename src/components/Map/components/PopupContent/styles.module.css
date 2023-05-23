@@ -1,0 +1,85 @@
+.locationContainer {
+   display: flex;
+   align-items: center;
+   gap: 6px;
+}
+
+.locationContainer span {
+   font-weight: 900;
+   font-size: 16px;
+   line-height: 26px;
+   color: var(--color-gray-600);
+}
+
+.weatherContent {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.weatherContent img {
+   width: 80px;
+   object-fit: contain;
+   height: auto;
+}
+
+.weatherContent span {
+   display: block;
+   font-size: 12px;
+   line-height: 22px;
+   color: var(--color-gray-600);
+   text-transform: capitalize;
+}
+
+.temperatures {
+   margin-top: 15px;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 10px;
+}
+
+.temperature {
+   background-color: var(--color-purple-500);
+   padding: 5px;
+   border-radius: 8px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   box-shadow: 7px 9px 1px #0003;
+}
+
+.temperature p { 
+   font-size: 16px;
+   font-weight: 700;
+   color: var(--color-gray-50);
+   margin: 0;
+}
+.temperature span { 
+   font-size: 12px;
+   font-weight: 400;
+   color: var(--color-gray-100);
+}
+
+.informations {
+   padding: 20px 0;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   justify-items: center;
+}
+
+.information {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.errorContent {
+   padding: 20px 10px;
+}
+
+.errorContent span {
+   display: block;
+   font-size: 14px;
+   line-height: 24px;
+   color: var(--color-purple-400);
+}

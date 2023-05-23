@@ -1,6 +1,6 @@
 export interface GetAPIRouteParams {
-  latitude: number
-  longitude: number
+  latitude?: number
+  longitude?: number
   location?: string
 }
 
@@ -18,7 +18,7 @@ export function getApiCurrentWeatherEndpoint({
 
   if (location) {
     uri.searchParams.set('q', location)
-  } else {
+  } else if (latitude && longitude) {
     uri.searchParams.set('lat', latitude.toString())
     uri.searchParams.set('lon', longitude.toString())
   }

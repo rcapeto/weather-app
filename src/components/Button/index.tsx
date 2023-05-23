@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, useMemo } from 'react'
+import { ButtonHTMLAttributes, ReactNode, useMemo } from 'react'
 import styles from './styles.module.css'
 
 type NativeButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
@@ -9,6 +9,7 @@ export interface ButtonProps
   text?: string
   buttonStyle?: string
   variation?: 'full' | 'border'
+  icon?: ReactNode
 }
 
 export function Button({
@@ -16,6 +17,7 @@ export function Button({
   text,
   buttonStyle,
   variation = 'full',
+  icon,
   ...props
 }: ButtonProps) {
   const className = useMemo(() => {
@@ -24,6 +26,7 @@ export function Button({
 
   return (
     <button onClick={onPress} className={className} {...props}>
+      {icon}
       {text}
     </button>
   )

@@ -8,13 +8,23 @@ interface ErrorPageProps {
   icon?: ReactNode
   buttonText?: string
   onPressBtn?: () => void
+  errorContentStyle?: string
 }
 
 export function ErrorPage(props: ErrorPageProps) {
-  const { buttonText, onPressBtn, errorMessage, icon, title } = props
+  const {
+    buttonText,
+    onPressBtn,
+    errorMessage,
+    icon,
+    title,
+    errorContentStyle,
+  } = props
 
   return (
-    <div className={styles.errorPageContainer}>
+    <div
+      className={[styles.errorPageContainer, errorContentStyle ?? ''].join(' ')}
+    >
       <span className={styles.errorTitle}>{title}</span>
 
       <div className={styles.iconContainer}>{icon}</div>

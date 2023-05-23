@@ -7,7 +7,7 @@ import { ButtonProps } from '@/components/Button'
 export const TabContext = createContext({} as TabContextValues)
 
 export default function TabContextProvider({ children }: PropsWithChildren) {
-  const [activeTab, setActiveTab] = useState<Tabs>(Tabs.LOCATION)
+  const [activeTab, setActiveTab] = useState<Tabs>(Tabs.MAP)
 
   function handleChangeTab(tab: Tabs) {
     return function () {

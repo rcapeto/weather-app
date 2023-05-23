@@ -1,6 +1,7 @@
 import Skeleton from 'react-loading-skeleton'
-import styles from './styles.module.css'
+
 import { SkeletonContainer } from '@/components/SkeletonContainer'
+import styles from './styles.module.css'
 
 export function Loader() {
   return (
