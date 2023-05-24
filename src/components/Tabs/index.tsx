@@ -15,7 +15,9 @@ export function Tabs() {
       <Mapper
         items={buttons}
         keyExtractor={(button) => `${button.text}-${Date.now()}`}
-        renderItem={({ item }) => <Button {...item} />}
+        renderItem={({ item }) => (
+          <Button {...item} buttonStyle={styles.buttonStyle} />
+        )}
       />
     </div>
   )
