@@ -1,32 +1,29 @@
 'use client'
 
-import { Fragment, FunctionComponent, useMemo } from 'react'
+import { Fragment } from 'react'
 
-import { Tabs as TabsEnum } from '@/context/TabContext/types'
-import { useTabs } from '@/hooks/useTabs'
+import { Compose } from '@/components/Compose'
 
-import { CurrentWeather } from '@/components/CurrentWeather'
-import { Map } from '@/components/Map'
-import { Tabs } from '@/components/Tabs'
+import ModalContextProvider from '@/context/Modal'
+import TabContextProvider from '@/context/Tabs'
+import LocationContextProvider from '@/context/Location'
+import HistoryContextProvider from '@/context/History'
 
-type Content = Record<TabsEnum, FunctionComponent<{}>>
+import { CurrentContent } from './CurrentContent'
+
+const contexts = [
+  ModalContextProvider,
+  TabContextProvider,
+  HistoryContextProvider,
+  LocationContextProvider,
+]
 
 export function PageContent() {
-  const { activeTab } = useTabs()
-
-  const Content = useMemo<FunctionComponent>(() => {
-    const contents: Content = {
-      [TabsEnum.LOCATION]: CurrentWeather,
-      [TabsEnum.MAP]: Map,
-    }
-
-    return contents[activeTab]
-  }, [activeTab])
-
   return (
     <Fragment>
-      <Tabs />
-      <Content />
+      <Compose contexts={contexts}>
+        <CurrentContent />
+      </Compose>
     </Fragment>
   )
 }

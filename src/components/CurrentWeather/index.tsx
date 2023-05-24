@@ -10,7 +10,7 @@ import { Loader } from './Loader'
 import { Content } from './Content'
 import { Error } from './ErrorPage'
 
-import { APICurrentWeatherData } from '@/interfaces/api'
+import { ResponseAPICurrentWeatherData } from '@/interfaces/api'
 
 export function CurrentWeather() {
   const { coords, loadingCoords, errorCoords } = useCurrentLocation()
@@ -25,7 +25,8 @@ export function CurrentWeather() {
     return getApiCurrentWeatherEndpoint(coords)
   }, [coords, getApiCurrentWeatherEndpoint])
 
-  const { isLoading, data, isError } = useApi<APICurrentWeatherData>(endpoint)
+  const { isLoading, data, isError } =
+    useApi<ResponseAPICurrentWeatherData>(endpoint)
 
   return (
     <ConditionRender

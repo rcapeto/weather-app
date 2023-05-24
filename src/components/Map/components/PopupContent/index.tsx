@@ -17,7 +17,7 @@ import ConditionRender from '@/components/RenderValidation'
 import { getImage } from '@/utils/getImage'
 import { format } from '@/utils/format'
 import { colors } from '@/config/colors'
-import { APICurrentWeatherData } from '@/interfaces/api'
+import { ResponseAPICurrentWeatherData } from '@/interfaces/api'
 
 import styles from './styles.module.css'
 
@@ -29,7 +29,8 @@ export function PopupContent(props: PopupContentProps) {
   const { getApiCurrentWeatherEndpoint } = useApiEndpoint()
   const endpoint = getApiCurrentWeatherEndpoint(props.position)
 
-  const { data, isError, isLoading } = useApi<APICurrentWeatherData>(endpoint)
+  const { data, isError, isLoading } =
+    useApi<ResponseAPICurrentWeatherData>(endpoint)
 
   function renderError() {
     return (

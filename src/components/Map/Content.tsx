@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, Fragment } from 'react'
 import {
   MapContainer,
   TileLayer,
@@ -8,7 +8,7 @@ import {
   Marker,
   Popup,
 } from 'react-leaflet'
-import { Search } from 'lucide-react'
+import { Search, Navigation, Locate } from 'lucide-react'
 import Leaflet from 'leaflet'
 
 import { Coordinates } from '@/hooks/useCurrentLocation/types'
@@ -17,12 +17,14 @@ import { useModal } from '@/hooks/useModal'
 
 import { PopupContent } from './components/PopupContent'
 import { Button } from '@/components/Button'
-
-import { APICurrentWeatherData } from '@/interfaces/api'
-import { colors } from '@/config/colors'
+import ConditionRender from '@/components/RenderValidation'
 import { Error } from './ErrorPage'
 
+import { ResponseAPIGoogleGeolocation } from '@/interfaces/api'
+import { colors } from '@/config/colors'
+
 import styles from './styles.module.css'
+import { useHistory } from '@/hooks/useHistory'
 
 interface ContentProps {
   coords?: Coordinates
@@ -33,12 +35,16 @@ export function Content(props: ContentProps) {
     props.coords ?? null,
   )
   const [loadingCityWeather, setLoadingCityWeather] = useState(false)
+  const [currentSearchAddress, setCurrentSearchAddress] = useState<
+    string | null
+  >(null)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const currentMap = useRef<Leaflet.Map>(null)
 
   const { showModal, closeModal } = useModal()
-  const { getApiCurrentWeatherEndpoint } = useApiEndpoint()
+  const { getApiGoogleGeolocation } = useApiEndpoint()
+  const { handleAddLocationInHistory } = useHistory()
 
   function handleShowError(location: string) {
     showModal({
@@ -63,6 +69,8 @@ export function Content(props: ContentProps) {
         inputRef.current.value = ''
       }
 
+      setCurrentSearchAddress(null)
+
       setPosition({
         latitude: event.latlng.lat,
         longitude: event.latlng.lng,
@@ -77,21 +85,34 @@ export function Content(props: ContentProps) {
       return undefined
     }
 
-    const location = inputRef.current.value
+    const address = inputRef.current.value
 
     try {
       setLoadingCityWeather(true)
-      const endpoint = getApiCurrentWeatherEndpoint({ location })
+      const endpoint = getApiGoogleGeolocation({ address })
       const response = await fetch(endpoint)
-      const data: APICurrentWeatherData = await response.json()
+      const data: ResponseAPIGoogleGeolocation = await response.json()
 
-      if (data && data.coord) {
-        updateMap({ latitude: data.coord.lat, longitude: data.coord.lon })
+      if (data && data.status === 'OK' && data.results.length > 0) {
+        const [result] = data.results
+        const {
+          geometry: { location },
+          formatted_address,
+        } = result
+
+        updateMap({ latitude: location.lat, longitude: location.lng })
+
+        setCurrentSearchAddress(formatted_address)
+        handleAddLocationInHistory(formatted_address)
+
+        inputRef.current.value = ''
       } else {
-        handleShowError(location)
+        handleShowError(address)
+        setCurrentSearchAddress(null)
       }
     } catch (err) {
-      handleShowError(location)
+      handleShowError(address)
+      setCurrentSearchAddress(null)
     } finally {
       setLoadingCityWeather(false)
     }
@@ -107,48 +128,75 @@ export function Content(props: ContentProps) {
     }
   }
 
+  function onPressFindMe() {
+    if (props?.coords) {
+      updateMap(props?.coords)
+      setCurrentSearchAddress(null)
+    }
+  }
+
   if (!props?.coords) {
     return <Error />
   }
 
   return (
-    <div className={styles.mapContainer}>
-      <div className={styles.inputContainer}>
-        <div className={styles.inputContent}>
-          <input
-            type="text"
-            ref={inputRef}
-            placeholder="Digite uma localização"
-          />
-          <Button
-            buttonStyle={styles.button}
-            icon={<Search color={colors.gray[100]} size={13} />}
-            onPress={handleSearchCityWeather}
-            disabled={loadingCityWeather}
-          />
-        </div>
-      </div>
-      <MapContainer
-        center={[props.coords.latitude, props.coords.longitude]}
-        zoom={18}
-        ref={currentMap}
-        style={{ width: '100%', height: '100%' }}
-      >
-        <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <LocationMarker />
+    <Fragment>
+      <ConditionRender
+        validation={!!currentSearchAddress}
+        validComponent={
+          <div className={styles.currentLocationContainer}>
+            <div className={styles.currentLocation}>
+              <Navigation color={colors.gray[800]} size={16} />
+              <p>{currentSearchAddress}</p>
+            </div>
+          </div>
+        }
+      />
+      <div className={styles.mapContainer}>
+        <div className={styles.inputContainer}>
+          <div className={styles.inputContent}>
+            <input
+              type="text"
+              ref={inputRef}
+              placeholder="Digite uma localização"
+            />
+            <Button
+              buttonStyle={styles.button}
+              icon={<Search color={colors.gray[100]} size={13} />}
+              onPress={handleSearchCityWeather}
+              disabled={loadingCityWeather}
+            />
+          </div>
 
-        {position && (
-          <Marker
-            position={[position.latitude, position.longitude]}
-            icon={mapIcon}
-          >
-            <Popup maxWidth={200} minWidth={200}>
-              <PopupContent position={position} />
-            </Popup>
-          </Marker>
-        )}
-      </MapContainer>
-    </div>
+          <div className={styles.buttonLocateMeContainer}>
+            <button type="button" onClick={onPressFindMe}>
+              <Locate color={colors.purple[600]} size={15} />
+            </button>
+          </div>
+        </div>
+
+        <MapContainer
+          center={[props.coords.latitude, props.coords.longitude]}
+          zoom={18}
+          ref={currentMap}
+          style={{ width: '100%', height: '100%' }}
+        >
+          <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <LocationMarker />
+
+          {position && (
+            <Marker
+              position={[position.latitude, position.longitude]}
+              icon={mapIcon}
+            >
+              <Popup maxWidth={200} minWidth={200}>
+                <PopupContent position={position} />
+              </Popup>
+            </Marker>
+          )}
+        </MapContainer>
+      </div>
+    </Fragment>
   )
 }
 

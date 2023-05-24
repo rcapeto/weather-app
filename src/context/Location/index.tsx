@@ -60,7 +60,13 @@ export default function LocationContextProvider({
     getCurrentLocation()
   })
   return (
-    <LocationContext.Provider value={{ coords, errorCoords, loadingCoords }}>
+    <LocationContext.Provider
+      value={{
+        coords,
+        errorCoords,
+        loadingCoords,
+      }}
+    >
       {children}
     </LocationContext.Provider>
   )

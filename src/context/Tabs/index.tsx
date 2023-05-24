@@ -28,10 +28,19 @@ export default function TabContextProvider({ children }: PropsWithChildren) {
       onPress: handleChangeTab(Tabs.MAP),
       variation: activeTab === Tabs.MAP ? 'full' : 'border',
     },
+    {
+      text: 'Histórico de pesquisas',
+      onPress: handleChangeTab(Tabs.HISTORY),
+      variation: activeTab === Tabs.HISTORY ? 'full' : 'border',
+    },
   ]
 
+  function updateCurrentTab(tab: Tabs) {
+    setActiveTab(tab)
+  }
+
   return (
-    <TabContext.Provider value={{ activeTab, buttons }}>
+    <TabContext.Provider value={{ activeTab, buttons, updateCurrentTab }}>
       {children}
     </TabContext.Provider>
   )

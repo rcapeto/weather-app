@@ -3,6 +3,37 @@
    position: relative;
 }
 
+.currentLocationContainer {
+   padding: 10px;
+   position: absolute;
+   left: 0;
+   top: 0;
+   z-index: 99999;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.currentLocation {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   max-width: 420px;
+   box-shadow: 7px 4px 1px #0003;
+   background-color: var(--color-white);
+   gap: 10px;
+   border-radius: 8px;
+   padding: 8px 16px;
+}
+
+.currentLocation p {
+   font-size: 16px;
+   line-height: 20px;
+   color: var(--color-gray-800);
+   flex: 1;
+}
+
 .inputContainer {
    padding: 10px;
    position: absolute;
@@ -24,13 +55,14 @@
 
 .inputContent input {
    flex: 1;
-   padding: 10px 16px;
+   padding: 8px 16px;
    border: 0;
    border-top-left-radius: 8px;
    border-bottom-left-radius: 8px;
    box-shadow: 7px 4px 1px #0003;
    font-size: 12px;
    font-weight: 400;
+   background-color: var(--color-white);
    color: var(--color-gray-900);
    outline-color: var(--color-purple-600);
 }
@@ -45,6 +77,36 @@
    border-bottom-left-radius: 0;
    border: 0;
    box-shadow: 7px 4px 1px #0003;
+}
+
+.buttonLocateMeContainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 50%;
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   transform: translate(-10px, -50px);
+   background-color: var(--color-white);
+   box-shadow: 7px 4px 1px #0003;
+   width: 35px;
+   height: 35px;
+   overflow: hidden;
+}
+
+.buttonLocateMeContainer button {
+   background: transparent;
+   border: none;
+   width: 100%;
+   padding: 8px;
+   height: 100%;
+   transition: all ease .5s;
+   cursor: pointer;
+}
+
+.buttonLocateMeContainer button:hover {
+   background-color: var(--color-gray-100);
 }
 
 .loaderContainer {
